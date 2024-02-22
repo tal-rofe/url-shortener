@@ -29,7 +29,7 @@
 		"build": {
 			"inputs": [
 				"source",
-				"{projectRoot}/vitest.config.ts",
+				"{projectRoot}/vite.config.ts",
 				"{projectRoot}/index.html",
 				"{projectRoot}/public/**/*"
 			],
