@@ -1,0 +1,69 @@
+name: Integration
+
+on:
+    pull_request:
+        branches: [main]
+
+permissions:
+    contents: read
+
+jobs:
+    typescript:
+        name: Testing TypeScript
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup Node environment
+              uses: Exlint/node-environment@v1.2.6
+              with:
+                  node-version: 20.11.0
+                  package-manager: pnpm
+                  package-manager-version: 8.14.1
+
+            - name: Test TypeScript
+              run: pnpm type-check:all
+
+    prettier:
+        name: Testing Prettier
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup Node environment
+              uses: Exlint/node-environment@v1.2.6
+              with:
+                  node-version: 20.11.0
+                  package-manager: pnpm
+                  package-manager-version: 8.14.1
+
+            - name: Test Prettier
+              run: pnpm prettier
+
+    build:
+        name: Testing build
+
+        runs-on: ubuntu-latest
+        steps:
+            - name: Setup Node environment
+              uses: Exlint/node-environment@v1.2.6
+              with:
+                  node-version: 20.11.0
+                  package-manager: pnpm
+                  package-manager-version: 8.14.1
+
+            - name: Test build
+              run: pnpm build:nested
+
+    knip:
+        name: Knip
+        runs-on: ubuntu-latest
+
+        steps:
+            - name: Setup Node environment
+              uses: Exlint/node-environment@v1.2.6
+              with:
+                  node-version: 20.11.1
+                  package-manager: pnpm
+                  package-manager-version: 8.15.3
+
+            - name: Knip
+              run: pnpm knip

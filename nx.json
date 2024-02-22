@@ -8,26 +8,32 @@
 		"default": {
 			"runner": "nx/tasks-runners/default",
 			"options": {
-				"cacheableOperations": ["type-check", "knip"]
+				"cacheableOperations": ["type-check", "build"]
 			}
 		}
 	},
 	"namedInputs": {
-		"typescriptSource": ["{projectRoot}/src/**/*.ts"]
+		"source": ["{projectRoot}/src/**/*"]
 	},
 	"targetDefaults": {
 		"type-check": {
 			"inputs": [
-				"typescriptSource",
+				"source",
 				"{projectRoot}/tsconfig.json",
 				"{projectRoot}/tsconfig.base.json",
 				"{workspaceRoot}/tsconfig.base.json"
 			],
+			"dependsOn": ["^build"],
 			"outputs": []
 		},
-		"knip": {
-			"inputs": ["{projectRoot}/knip.json", "{projectRoot}/package.json"],
-			"outputs": []
+		"build": {
+			"inputs": [
+				"source",
+				"{projectRoot}/vitest.config.ts",
+				"{projectRoot}/index.html",
+				"{projectRoot}/public/**/*"
+			],
+			"dependsOn": ["^build"]
 		}
 	}
 }

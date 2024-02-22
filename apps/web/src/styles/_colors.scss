@@ -1,0 +1,13 @@
+$colors: (
+	web-background: #28242c,
+	secondary-background: #e5e5e5,
+	primary: #0c7bd6,
+	button-background: #43aa43,
+	white-text: #ededed,
+);
+
+:export {
+	@each $key, $value in $colors {
+		#{unquote($key)}: $value;
+	}
+}

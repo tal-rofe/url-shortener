@@ -1,0 +1,62 @@
+@use 'sass:map';
+
+@use '@/styles/variables.module.scss';
+
+.container {
+	display: flex;
+	flex-direction: column;
+	background-color: map.get(variables.$colors, secondary-background);
+	border-radius: 5px;
+	padding: map.get(variables.$sizes, spacing-l);
+	width: map.get(variables.$sizes, form-width);
+	align-items: center;
+
+	&__header {
+		font-size: 2.2rem;
+		color: map.get(variables.$colors, primary);
+	}
+
+	.urlInputContainer {
+		display: flex;
+		align-items: center;
+		margin-block: map.get(variables.$sizes, spacing-l);
+		height: 40px;
+		border-radius: 5px;
+		overflow: hidden;
+		width: 80%;
+		box-shadow: 0 10px 20px 0 #50505040;
+
+		&__input {
+			flex-grow: 1;
+			padding: map.get(variables.$sizes, spacing-l);
+			height: 100%;
+		}
+
+		&__button {
+			display: flex;
+			align-items: center;
+			height: 100%;
+			font-weight: bold;
+			background-color: map.get(variables.$colors, button-background);
+			color: map.get(variables.$colors, white-text);
+			padding: map.get(variables.$sizes, spacing-l);
+		}
+	}
+
+	&__output {
+		transition: 0.3s ease opacity;
+		border: 2px dashed map.get(variables.$colors, web-background);
+		width: 80%;
+		padding: map.get(variables.$sizes, spacing-l);
+		border-radius: 5px;
+		font-size: 1.6rem;
+		color: map.get(variables.$colors, web-background);
+		text-align: center;
+		overflow-x: hidden;
+		text-overflow: ellipsis;
+
+		&:disabled {
+			opacity: 0.3;
+		}
+	}
+}

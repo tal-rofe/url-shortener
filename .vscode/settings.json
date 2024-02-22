@@ -7,7 +7,8 @@
 		"**/dist": true
 	},
 	"files.exclude": {
-		"**/*.module.scss.d.ts": true
+		"**/*.module.scss.d.ts": true,
+		"**/tsconfig.tsbuildinfo": true
 	},
 	"[properties]": {
 		"editor.defaultFormatter": "foxundermoon.shell-format"

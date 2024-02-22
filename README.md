@@ -1,3 +1,5 @@
+<img src="assets/preview.png" width="80%"/>
+
 # URL Shortener
 
 This project is a demo for URL shortener with the following components: API Gateway, Lambda, S3, CloudFront. This project will be deployed using Terraform.
