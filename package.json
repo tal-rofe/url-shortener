@@ -38,6 +38,6 @@
 	"packageManager": "pnpm@8.15.3",
 	"engines": {
 		"pnpm": "8.15.3",
-		"node": "20.11.0"
+		"node": "20.11.1"
 	}
 }
