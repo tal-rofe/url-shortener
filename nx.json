@@ -23,7 +23,7 @@
 				"{projectRoot}/tsconfig.base.json",
 				"{workspaceRoot}/tsconfig.base.json"
 			],
-			"dependsOn": ["^build"],
+			"dependsOn": [],
 			"outputs": []
 		},
 		"build": {
@@ -33,7 +33,7 @@
 				"{projectRoot}/index.html",
 				"{projectRoot}/public/**/*"
 			],
-			"dependsOn": ["^build"]
+			"dependsOn": []
 		}
 	}
 }

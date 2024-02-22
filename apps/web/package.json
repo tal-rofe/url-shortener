@@ -5,6 +5,7 @@
 	"description": "Task",
 	"license": "UNLICENSED",
 	"author": "Tal Rofe",
+	"type": "module",
 	"scripts": {
 		"start:dev": "vite -c ./vite.config.ts",
 		"build": "vite build -c ./vite.config.ts",
