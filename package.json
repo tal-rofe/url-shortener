@@ -1,0 +1,37 @@
+{
+	"name": "url-shortener",
+	"version": "1.0.0",
+	"private": true,
+	"description": "URL shortener: API Gateway, AWS Lambda, S3, CloudFront :: Terraform",
+	"license": "MIT",
+	"author": "Tal Rofe",
+	"type": "module",
+	"scripts": {
+		"preinstall": "npx only-allow pnpm",
+		"husky:install": "husky install",
+		"git:config": "git config --local include.path ../.gitconfig",
+		"prepare": "is-ci || run-p husky:install git:config",
+		"type-check:root": "tsc --project ./tsconfig.json",
+		"type-check:nested": "nx run-many --target=type-check --nx-bail",
+		"type-check:all": "run-p type-check:root type-check:nested",
+		"prettier": "prettier --check **/*.{ts,js,cjs,json,yaml}",
+		"knip": "knip -c ./knip.json -t ./tsconfig.json"
+	},
+	"devDependencies": {
+		"@commitlint/cli": "18.6.1",
+		"@types/node": "20.11.19",
+		"commitizen": "4.3.0",
+		"cz-vinyl": "2.5.1",
+		"husky": "9.0.11",
+		"is-ci": "3.0.1",
+		"knip": "5.0.1",
+		"lint-staged": "15.2.2",
+		"npm-run-all2": "6.1.2",
+		"nx": "18.0.4",
+		"only-allow": "1.2.1",
+		"pnpm": "8.15.3",
+		"prettier": "3.2.5",
+		"prettier-plugin-sh": "0.14.0",
+		"typescript": "5.3.3"
+	}
+}

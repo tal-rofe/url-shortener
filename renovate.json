@@ -1,0 +1,45 @@
+{
+	"$schema": "https://docs.renovatebot.com/renovate-schema.json",
+	"extends": ["config:base", ":semanticCommitTypeAll(chore)", ":semanticCommitScopeDisabled"],
+	"labels": ["dependencies"],
+	"regexManagers": [
+		{
+			"fileMatch": ["^(\\.github\\/workflows)\\/[^/]+\\.yaml$"],
+			"matchStrings": [
+				"pnpm-version: (?<currentValue>.*)",
+				"package-manager-version: (?<currentValue>.*)"
+			],
+			"depNameTemplate": "pnpm",
+			"datasourceTemplate": "npm"
+		},
+		{
+			"fileMatch": ["^docker\\/Dockerfile\\..*$", "^(\\.github\\/workflows)\\/[^/]+\\.yaml$"],
+			"matchStrings": ["FROM node:(?<currentValue>.*)", "node-version: (?<currentValue>.*)"],
+			"depNameTemplate": "node",
+			"datasourceTemplate": "node",
+			"versioningTemplate": "node"
+		},
+		{
+			"fileMatch": ["^docker\\/Dockerfile\\..*$"],
+			"matchStrings": ["pnpm@(?<currentValue>.*)"],
+			"depNameTemplate": "pnpm",
+			"datasourceTemplate": "npm"
+		},
+		{
+			"fileMatch": ["package.json"],
+			"matchStrings": ["\"node\": \"(?<currentValue>.*)\""],
+			"depNameTemplate": "node",
+			"datasourceTemplate": "node",
+			"versioningTemplate": "node"
+		}
+	],
+	"packageRules": [
+		{
+			"updateTypes": ["minor", "patch"],
+			"automerge": true
+		}
+	],
+	"commitMessageAction": "🤖 Update",
+	"stabilityDays": 7,
+	"reviewersFromCodeOwners": true
+}

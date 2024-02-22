@@ -1,0 +1,5 @@
+{
+	"$schema": "./node_modules/knip/schema.json",
+	"ignore": ["./czvinyl.config.ts", "./release.config.cjs"],
+	"ignoreDependencies": ["commitizen"]
+}

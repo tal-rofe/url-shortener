@@ -1,0 +1,33 @@
+{
+	"$schema": "./node_modules/nx/schemas/nx-schema.json",
+	"workspaceLayout": {
+		"appsDir": "apps",
+		"libsDir": "functions"
+	},
+	"tasksRunnerOptions": {
+		"default": {
+			"runner": "nx/tasks-runners/default",
+			"options": {
+				"cacheableOperations": ["type-check", "knip"]
+			}
+		}
+	},
+	"namedInputs": {
+		"typescriptSource": ["{projectRoot}/src/**/*.ts"]
+	},
+	"targetDefaults": {
+		"type-check": {
+			"inputs": [
+				"typescriptSource",
+				"{projectRoot}/tsconfig.json",
+				"{projectRoot}/tsconfig.base.json",
+				"{workspaceRoot}/tsconfig.base.json"
+			],
+			"outputs": []
+		},
+		"knip": {
+			"inputs": ["{projectRoot}/knip.json", "{projectRoot}/package.json"],
+			"outputs": []
+		}
+	}
+}
