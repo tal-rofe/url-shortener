@@ -18,7 +18,7 @@ jobs:
               with:
                   node-version: 20.11.0
                   package-manager: pnpm
-                  package-manager-version: 8.14.1
+                  package-manager-version: 8.15.3
 
             - name: Test TypeScript
               run: pnpm type-check:all
@@ -33,7 +33,7 @@ jobs:
               with:
                   node-version: 20.11.0
                   package-manager: pnpm
-                  package-manager-version: 8.14.1
+                  package-manager-version: 8.15.3
 
             - name: Test Prettier
               run: pnpm prettier
@@ -48,7 +48,7 @@ jobs:
               with:
                   node-version: 20.11.0
                   package-manager: pnpm
-                  package-manager-version: 8.14.1
+                  package-manager-version: 8.15.3
 
             - name: Test build
               run: pnpm build:nested
