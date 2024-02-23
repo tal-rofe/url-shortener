@@ -8,9 +8,9 @@ export const doesObjectExist = async (s3Client: S3Client, objectKey: string) => 
 
 	try {
 		await s3Client.send(headCommand);
-
-		return true;
 	} catch (error: unknown) {
 		return false;
 	}
+
+	return true;
 };
