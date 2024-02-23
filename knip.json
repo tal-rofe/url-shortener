@@ -6,6 +6,10 @@
 		"apps/web": {
 			"entry": "./src/index.tsx",
 			"project": ["./src/**/*"]
+		},
+		"functions/*": {
+			"entry": "./src/index.ts",
+			"project": "./src/**/*"
 		}
 	}
 }

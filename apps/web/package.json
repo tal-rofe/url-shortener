@@ -1,9 +1,9 @@
 {
-	"name": "Task",
+	"name": "@url-shortener/web",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Task",
-	"license": "UNLICENSED",
+	"description": "Web application for users to shortener URLs",
+	"license": "MIT",
 	"author": "Tal Rofe",
 	"type": "module",
 	"scripts": {

@@ -31,7 +31,10 @@
 				"source",
 				"{projectRoot}/vite.config.ts",
 				"{projectRoot}/index.html",
-				"{projectRoot}/public/**/*"
+				"{projectRoot}/public/**/*",
+				"{projectRoot}/tsconfig.base.json",
+				"{projectRoot}/tsconfig.build.json",
+				"{workspaceRoot}/tsconfig.base.json"
 			],
 			"dependsOn": []
 		}
