@@ -1,6 +1,6 @@
 const config = {
 	branches: ['main'],
-	repositoryUrl: 'git+https://github.com/tal-rofe/cz-vinyl',
+	repositoryUrl: 'git+https://github.com/tal-rofe/url-shortener',
 	plugins: [
 		[
 			'@semantic-release/commit-analyzer',
