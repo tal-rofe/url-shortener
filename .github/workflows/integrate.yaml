@@ -9,7 +9,7 @@ permissions:
 
 jobs:
     typescript:
-        name: Testing TypeScript
+        name: TypeScript
 
         runs-on: ubuntu-latest
         steps:
@@ -24,7 +24,7 @@ jobs:
               run: pnpm type-check:all
 
     prettier:
-        name: Testing Prettier
+        name: Prettier
 
         runs-on: ubuntu-latest
         steps:
@@ -39,7 +39,7 @@ jobs:
               run: pnpm prettier
 
     build:
-        name: Testing build
+        name: Build
 
         runs-on: ubuntu-latest
         steps:
