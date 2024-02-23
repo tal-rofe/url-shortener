@@ -1,0 +1,13 @@
+{
+	"language": "en",
+	"ignorePaths": [
+		"./pnpm-lock.yaml",
+		"./renovate.json",
+		"./CHANGELOG.md",
+		"**/package.json",
+		"./knip.json",
+		"./cspell.json",
+		"./czvinyl.config.ts"
+	],
+	"words": ["Rofe", "injective", "toastify"]
+}
