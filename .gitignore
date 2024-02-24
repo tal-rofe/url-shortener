@@ -3,3 +3,4 @@ node_modules
 .terraform
 .nx
 tsconfig.tsbuildinfo
+terraform/artifacts
