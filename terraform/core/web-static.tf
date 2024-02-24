@@ -10,7 +10,7 @@ module "web_app_static" {
 
   s3_bucket_tags = {
     Name  = "${var.project}-S3-Bucket-Web-App",
-    Stack = "Frontned"
+    Stack = "Frontend"
   }
 
   acm_tags = {

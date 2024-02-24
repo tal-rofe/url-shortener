@@ -9,5 +9,5 @@
 		"./cspell.json",
 		"./czvinyl.config.ts"
 	],
-	"words": ["Rofe", "injective", "toastify"]
+	"words": ["Rofe", "injective", "toastify", "tfstate", "etag", "filemd"]
 }
