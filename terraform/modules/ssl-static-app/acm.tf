@@ -14,6 +14,5 @@ module "acm_cloudfront" {
 
   wait_for_validation = true
 
-
   tags = merge(var.common_tags, var.acm_tags)
 }

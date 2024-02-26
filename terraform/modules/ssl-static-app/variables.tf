@@ -15,7 +15,7 @@ variable "s3_bucket_tags" {
 }
 
 variable "acm_tags" {
-  description = "The tags for S3 bucket resource"
+  description = "The tags for ACM resource"
   type        = map(string)
 }
 
