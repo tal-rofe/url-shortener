@@ -60,7 +60,7 @@ resource "aws_lambda_function" "store_url_lambda" {
   environment {
     variables = {
       AWS_REGION = data.aws_region.current.name
-      S3_BUCKET  = var.stored_urls_s3_bucket_name
+      S3_BUCKET  = module.s3_store_url_lambda_bucket.s3_bucket_id
     }
   }
 

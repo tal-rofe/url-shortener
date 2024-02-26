@@ -14,7 +14,7 @@ module "web_app_static" {
   }
 
   acm_tags = {
-      Name  = "${var.project}-ACM-CloudFront-Certificate"
+      Name  = "${var.project}-ACM-CloudFront-Web-App-Certificate"
       Stack = "Frontend"
   }
 }
