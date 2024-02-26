@@ -8,7 +8,7 @@ module "api_gateway" {
   cors_configuration = {
     allow_headers = ["Content-Type"]
     allow_methods = ["POST"]
-    allow_origins = ["*"]
+    allow_origins = [module.web_app_static.cloudfront_distribution_domain_name]
   }
 
   integrations = {
