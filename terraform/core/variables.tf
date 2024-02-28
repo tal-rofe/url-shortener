@@ -3,6 +3,11 @@ variable "project" {
   type        = string
 }
 
+variable "domain_name" {
+  description = "Domain name of application"
+  type        = string
+}
+
 variable "common_tags" {
   description = "A map of common tags to add to all resources"
   type        = map(string)

@@ -12,7 +12,10 @@ module "acm_cloudfront" {
     aws = aws.cloudfront_certificates_region
   }
 
-  wait_for_validation = true
+  domain_name               = var.domain_name
+  zone_id                   = var.zone_id
+  subject_alternative_names = ["api.${var.domain_name}"]
+  wait_for_validation       = true
 
   tags = merge(var.common_tags, var.acm_tags)
 }

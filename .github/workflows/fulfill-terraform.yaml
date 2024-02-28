@@ -1,0 +1,79 @@
+name: Fulfill Terrafrom
+
+on:
+    workflow_dispatch:
+
+jobs:
+    fulfill_terraform:
+        name: Fulfill Terraform
+        runs-on: ubuntu-latest
+        if: github.actor == 'tal-rofe'
+        env:
+            AWS_REGION: ${{ secrets.AWS_REGION }}
+            AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+            TF_VAR_domain_name: ${{ secrets.DOMAIN_NAME }}
+
+        steps:
+            - name: Setup Node environment
+              uses: Exlint/node-environment@v1.2.6
+              with:
+                  should-cache: false
+                  node-version: 20.11.0
+                  package-manager: pnpm
+                  package-manager-version: 8.14.1
+
+            - name: Configure AWS credentials
+              uses: aws-actions/configure-aws-credentials@v4
+              with:
+                  aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+                  aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+                  aws-region: ${{ secrets.AWS_REGION }}
+
+            - name: Terraform setup
+              uses: hashicorp/setup-terraform@v3
+              with:
+                  terraform_wrapper: false
+
+            - name: Terraform core init
+              working-directory: terraform/core
+              env:
+                  TERRAFORM_BACKEND_S3_BUCKET: ${{ secrets.TERRAFORM_BACKEND_S3_BUCKET }}
+                  TERRAFORM_BACKEND_DYNAMODB_TABLE: ${{ secrets.TERRAFORM_BACKEND_DYNAMODB_TABLE }}
+              run: |
+                  terraform init \
+                  -backend-config="bucket=$TERRAFORM_BACKEND_S3_BUCKET" \
+                  -backend-config="dynamodb_table=$TERRAFORM_BACKEND_DYNAMODB_TABLE" \
+                  -backend-config="region=$AWS_REGION"
+
+            - name: Terraform core plan
+              working-directory: terraform/core
+              run: terraform plan -no-color -out state.tfplan
+
+            - name: Terraform core apply
+              working-directory: terraform/core
+              run: terraform apply state.tfplan
+
+            - name: Get Terraform core outputs
+              id: terraform-core-outputs
+              working-directory: terraform/core
+              run: |
+                  s3_bucket_name=$(terraform output -raw s3_bucket_name)
+                  cloudfront_distribution_id=$(terraform output -raw cloudfront_distribution_id)
+                  echo "S3_BUCKET_NAME=$s3_bucket_name" >> $GITHUB_OUTPUT
+                  echo "CLOUDFRONT_DISTRIBUTION_ID=$cloudfront_distribution_id" >> $GITHUB_OUTPUT
+
+            - name: Build web application
+              run: pnpm exec nx build @url-shortener/web
+
+            - name: Deploy to S3 and invalidate CloudFront
+              uses: reggionick/s3-deploy@v4
+              with:
+                  folder: ./apps/web/dist
+                  bucket: ${{ steps.terraform-core-outputs.outputs.S3_BUCKET_NAME }}
+                  bucket-region: ${{ secrets.AWS_REGION }}
+                  dist-id: ${{ steps.terraform-core-outputs.outputs.CLOUDFRONT_DISTRIBUTION_ID }}
+                  invalidation: /
+                  delete-removed: true
+                  private: true
+                  files-to-include: '**/*'

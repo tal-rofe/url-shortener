@@ -1,3 +1,13 @@
+variable "domain_name" {
+  description = "The domain name of the application"
+  type        = string
+}
+
+variable "zone_id" {
+  description = "The zone identifier to set domain of the application in"
+  type        = string
+}
+
 variable "common_tags" {
   description = "The tags for all created resources"
   type        = map(string)
@@ -18,6 +28,12 @@ variable "acm_tags" {
   description = "The tags for ACM resource"
   type        = map(string)
 }
+
+variable "www_redirect_bucket_tags" {
+  description = "The tags for redirect bucket resource"
+  type        = map(string)
+}
+
 
 variable "not_found_file_path" {
   description = "The file to load when requests resource (page) not found"

@@ -1,14 +1,24 @@
-import React, { type ForwardedRef, forwardRef } from 'react';
+import React, { type ForwardedRef, forwardRef, useRef, useImperativeHandle } from 'react';
+
+import type { UrlRelatedRefs } from './types';
 
 import classes from './Home.module.scss';
 
 type Props = {
 	readonly isOutputButtonDisabled: boolean;
-	readonly onClickButtonShorten: VoidFunction;
+	readonly onClickButtonShorten: () => Promise<void>;
 	readonly onClickButtonOutput: VoidFunction;
 };
 
-const HomeView = forwardRef((props: Props, urlInputRef: ForwardedRef<HTMLInputElement>) => {
+const HomeView = forwardRef((props: Props, urlRelatedRefs: ForwardedRef<UrlRelatedRefs>) => {
+	const inputRef = useRef<NonNullable<UrlRelatedRefs>['input'] | null>(null);
+	const outputRef = useRef<NonNullable<UrlRelatedRefs>['output'] | null>(null);
+
+	useImperativeHandle(urlRelatedRefs, () => ({
+		input: inputRef.current!,
+		output: outputRef.current!,
+	}));
+
 	return (
 		<main className={classes['container']}>
 			<h1 className={classes['container__header']}>URL Shortener</h1>
@@ -16,7 +26,7 @@ const HomeView = forwardRef((props: Props, urlInputRef: ForwardedRef<HTMLInputEl
 			<div className={classes['urlInputContainer']}>
 				<input
 					className={classes['urlInputContainer__input']}
-					ref={urlInputRef}
+					ref={inputRef}
 					type="text"
 					placeholder="Enter URL to shorten.."
 				/>
@@ -30,6 +40,7 @@ const HomeView = forwardRef((props: Props, urlInputRef: ForwardedRef<HTMLInputEl
 			</div>
 
 			<button
+				ref={outputRef}
 				className={classes['container__output']}
 				type="button"
 				disabled={props.isOutputButtonDisabled}

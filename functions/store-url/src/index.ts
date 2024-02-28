@@ -11,7 +11,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 	const requestBody = event.body;
 
 	if (!requestBody) {
-		return { statusCode: 400, body: JSON.stringify({ message: 'Missing URL to shortener' }) };
+		return { statusCode: 400, body: 'Missing URL to shortener' };
 	}
 
 	let validatedRequestBody: z.infer<typeof RequestBody>;
@@ -20,7 +20,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 		const parsedRequestBody = JSON.parse(requestBody);
 		validatedRequestBody = await RequestBody.parseAsync(parsedRequestBody);
 	} catch (error: unknown) {
-		return { statusCode: 400, body: JSON.stringify({ message: 'Invalid URL data' }) };
+		return { statusCode: 400, body: 'Invalid URL data' };
 	}
 
 	/**
@@ -46,7 +46,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 	try {
 		await s3Client.send(putS3Command);
 	} catch (error: unknown) {
-		return { statusCode: 500, body: JSON.stringify({ message: 'Server error' }) };
+		return { statusCode: 500, body: 'Server error' };
 	}
 
 	return { statusCode: 200, body: JSON.stringify({ hashedUrl }) };
