@@ -2,7 +2,7 @@
 
 # URL Shortener
 
-This project is a demo for URL shortener with the following components: API Gateway, Lambda, S3, CloudFront. This project will be deployed using Terraform.
+This project is a demo for URL shortener with the following components: Route53, ACM, API Gateway, Lambda, S3, CloudFront. This project will be deployed using Terraform.
 
 ### Disclaimer
 

@@ -2,7 +2,7 @@
 	"name": "url-shortener",
 	"version": "1.0.0",
 	"private": true,
-	"description": "URL shortener: API Gateway, AWS Lambda, S3, CloudFront :: Terraform",
+	"description": "URL shortener: Route53, ACM, API Gateway, AWS Lambda, S3, CloudFront :: Terraform",
 	"license": "MIT",
 	"author": "Tal Rofe",
 	"type": "module",
