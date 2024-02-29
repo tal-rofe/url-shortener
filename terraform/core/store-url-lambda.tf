@@ -32,7 +32,7 @@ data "archive_file" "lambda_store_url_zip" {
 }
 
 resource "aws_s3_object" "store_url_lambda_s3_object" {
-  bucket = aws_s3_bucket.store_url_lambda_bucket.id
+  bucket = aws_s3_bucket.s3_store_url_lambda_bucket.id
   key    = "store-url.zip"
   source = data.archive_file.lambda_store_url_zip.output_path
   etag   = filemd5(data.archive_file.lambda_store_url_zip.output_path)
@@ -54,8 +54,8 @@ resource "aws_lambda_function" "store_url_lambda" {
   handler          = "index.handler"
   runtime          = "nodejs20.x"
   source_code_hash = data.archive_file.lambda_store_url_zip.output_base64sha256
-  s3_bucket        = aws_s3_bucket.store_url_lambda_bucket.id
-  s3_key           = aws_s3_object.lambda_hello.key
+  s3_bucket        = aws_s3_bucket.s3_store_url_lambda_bucket.id
+  s3_key           = aws_s3_object.store_url_lambda_s3_object.key
 
   environment {
     variables = {
