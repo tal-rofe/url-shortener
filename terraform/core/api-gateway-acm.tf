@@ -6,6 +6,7 @@ module "api_gateway_acm" {
   zone_id                   = aws_route53_zone.primary.zone_id
   subject_alternative_names = ["api.${var.domain_name}"]
   wait_for_validation       = true
+  validation_method         = "DNS"
 
   tags = merge(
     var.common_tags,

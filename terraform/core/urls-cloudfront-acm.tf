@@ -12,6 +12,7 @@ module "urls_acm_cloudfront" {
     aws = aws.cloudfront_certificates_region
   }
 
+  validation_method   = "DNS"
   wait_for_validation = true
 
   tags = merge(

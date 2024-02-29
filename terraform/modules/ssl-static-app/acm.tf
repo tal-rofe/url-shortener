@@ -16,6 +16,7 @@ module "acm_cloudfront" {
   zone_id                   = var.zone_id
   subject_alternative_names = ["api.${var.domain_name}"]
   wait_for_validation       = true
+  validation_method         = "DNS"
 
   tags = merge(var.common_tags, var.acm_tags)
 }

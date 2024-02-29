@@ -46,8 +46,6 @@ resource "aws_s3_object" "store_url_lambda_s3_object" {
   )
 }
 
-data "aws_region" "current" {}
-
 resource "aws_lambda_function" "store_url_lambda" {
   function_name    = "store-url-lambda"
   role             = aws_iam_role.iam_for_lambda_store_url.arn
@@ -59,8 +57,7 @@ resource "aws_lambda_function" "store_url_lambda" {
 
   environment {
     variables = {
-      AWS_REGION = data.aws_region.current.name
-      S3_BUCKET  = module.s3_store_url_lambda_bucket.s3_bucket_id
+      S3_BUCKET = module.s3_store_url_lambda_bucket.s3_bucket_id
     }
   }
 
