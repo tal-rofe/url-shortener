@@ -32,7 +32,7 @@ data "archive_file" "lambda_store_url_zip" {
 }
 
 resource "aws_s3_object" "store_url_lambda_s3_object" {
-  bucket = aws_s3_bucket.s3_store_url_lambda_bucket.id
+  bucket = module.s3_store_url_lambda_bucket.s3_bucket_id
   key    = "store-url.zip"
   source = data.archive_file.lambda_store_url_zip.output_path
   etag   = filemd5(data.archive_file.lambda_store_url_zip.output_path)
