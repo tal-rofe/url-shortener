@@ -1,9 +1,11 @@
 module "api_gateway" {
   source = "terraform-aws-modules/apigateway-v2/aws"
 
-  name          = "url-shortener-api-gateway"
-  description   = "API gateway for shortener URL"
-  protocol_type = "HTTP"
+  name                        = "url-shortener-api-gateway"
+  description                 = "API gateway for shortener URL"
+  protocol_type               = "HTTP"
+  domain_name                 = "api.${var.domain_name}"
+  domain_name_certificate_arn = module.api_gateway_acm.acm_certificate_arn
 
   cors_configuration = {
     allow_headers = ["Content-Type"]
@@ -18,6 +20,14 @@ module "api_gateway" {
       timeout_milliseconds   = 12000
     }
   }
+
+  domain_name_tags = merge(
+    var.common_tags,
+    {
+      Name  = "${var.project}-API-Gateway-Domain"
+      Stack = "Backend"
+    }
+  )
 
   tags = merge(
     var.common_tags,
