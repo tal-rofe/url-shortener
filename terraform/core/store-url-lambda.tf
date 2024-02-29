@@ -54,7 +54,7 @@ resource "aws_lambda_function" "store_url_lambda" {
   handler          = "index.handler"
   runtime          = "nodejs20.x"
   source_code_hash = data.archive_file.lambda_store_url_zip.output_base64sha256
-  s3_bucket        = aws_s3_bucket.s3_store_url_lambda_bucket.id
+  s3_bucket        = module.s3_store_url_lambda_bucket.s3_bucket_id
   s3_key           = aws_s3_object.store_url_lambda_s3_object.key
 
   environment {
