@@ -12,6 +12,7 @@ module "urls_acm_cloudfront" {
     aws = aws.cloudfront_certificates_region
   }
 
+  zone_id             = aws_route53_zone.primary.zone_id
   validation_method   = "DNS"
   wait_for_validation = true
 
