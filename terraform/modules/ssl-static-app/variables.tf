@@ -33,10 +33,3 @@ variable "www_redirect_bucket_tags" {
   description = "The tags for redirect bucket resource"
   type        = map(string)
 }
-
-
-variable "not_found_file_path" {
-  description = "The file to load when requests resource (page) not found"
-  type        = string
-  default     = "/index.html"
-}
