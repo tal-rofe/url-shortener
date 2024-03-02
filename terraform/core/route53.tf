@@ -25,7 +25,7 @@ resource "aws_route53_record" "api_record" {
 
 resource "aws_route53_record" "urls_record" {
   zone_id = aws_route53_zone.primary.zone_id
-  name    = var.domain_name
+  name    = "u.${var.domain_name}"
   type    = "A"
 
   alias {
