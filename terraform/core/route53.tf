@@ -1,7 +1,5 @@
-resource "aws_route53_zone" "primary" {
-  name          = var.domain_name
-  comment       = "Hosted Zone for URL shortener application, managed by Terraform"
-  force_destroy = true
+data "aws_route53_zone" "primary" {
+  name = var.domain_name
 
   tags = merge(
     var.common_tags,
