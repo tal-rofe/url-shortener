@@ -3,7 +3,7 @@ module "api_gateway_acm" {
   version = "5.0.0"
 
   domain_name               = var.domain_name
-  zone_id                   = aws_route53_zone.primary.zone_id
+  zone_id                   = data.aws_route53_zone.primary.zone_id
   subject_alternative_names = ["api.${var.domain_name}"]
   wait_for_validation       = true
   validation_method         = "DNS"

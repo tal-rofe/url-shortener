@@ -2,7 +2,7 @@ module "web_app_static" {
   source = "../modules/ssl-static-app"
 
   domain_name = var.domain_name
-  zone_id     = aws_route53_zone.primary.zone_id
+  zone_id     = data.aws_route53_zone.primary.zone_id
 
   common_tags = var.common_tags
 
