@@ -18,7 +18,7 @@ jobs:
               with:
                   node-version: 20.11.1
                   package-manager: pnpm
-                  package-manager-version: 8.15.3
+                  package-manager-version: 8.15.4
 
             - name: Test TypeScript
               run: pnpm type-check:all
@@ -33,7 +33,7 @@ jobs:
               with:
                   node-version: 20.11.1
                   package-manager: pnpm
-                  package-manager-version: 8.15.3
+                  package-manager-version: 8.15.4
 
             - name: Test Prettier
               run: pnpm prettier
@@ -48,7 +48,7 @@ jobs:
               with:
                   node-version: 20.11.1
                   package-manager: pnpm
-                  package-manager-version: 8.15.3
+                  package-manager-version: 8.15.4
 
             - name: Test build
               run: pnpm build:nested
@@ -63,7 +63,7 @@ jobs:
               with:
                   node-version: 20.11.1
                   package-manager: pnpm
-                  package-manager-version: 8.15.3
+                  package-manager-version: 8.15.4
 
             - name: Knip
               run: pnpm knip
@@ -78,7 +78,7 @@ jobs:
               with:
                   node-version: 20.11.1
                   package-manager: pnpm
-                  package-manager-version: 8.15.3
+                  package-manager-version: 8.15.4
 
             - name: CSpell
               run: pnpm cspell
