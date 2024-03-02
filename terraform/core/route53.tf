@@ -1,5 +1,11 @@
+provider "aws" {
+  alias  = "primary_aws_provider"
+  region = "us-east-1"
+}
+
 data "aws_route53_zone" "primary" {
-  name = "${var.domain_name}."
+  name     = var.domain_name
+  provider = aws.primary_aws_provider
 
   tags = merge(
     var.common_tags,
