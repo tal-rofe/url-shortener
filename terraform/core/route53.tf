@@ -1,5 +1,5 @@
 data "aws_route53_zone" "primary" {
-  name = var.domain_name
+  name = "url-shortener-guide.click"
 
   tags = merge(
     var.common_tags,
