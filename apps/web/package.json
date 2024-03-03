@@ -8,7 +8,7 @@
 	"type": "module",
 	"scripts": {
 		"start:dev": "vite -c ./vite.config.ts",
-		"build": "vite build -c ./vite.config.ts",
+		"build": "vite build -c ./vite.config.ts --mode production",
 		"type-check": "tsc --project ./tsconfig.json"
 	},
 	"dependencies": {

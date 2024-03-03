@@ -15,6 +15,5 @@ export default defineConfig(() => {
 		plugins: [react(), tsconfigPaths(), sassDts()],
 		resolve: { alias: { '@/styles': path.join(__dirname, 'src', 'styles') } },
 		preview: { port: 8080 },
-		mode: 'development',
 	};
 });
