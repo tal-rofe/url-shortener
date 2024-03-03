@@ -61,10 +61,10 @@ jobs:
               id: terraform-core-outputs
               working-directory: terraform/core
               run: |
-                  s3_bucket_name=$(terraform output -raw s3_bucket_name)
-                  cloudfront_distribution_id=$(terraform output -raw cloudfront_distribution_id)
-                  echo "S3_BUCKET_NAME=$s3_bucket_name" >> $GITHUB_OUTPUT
-                  echo "CLOUDFRONT_DISTRIBUTION_ID=$cloudfront_distribution_id" >> $GITHUB_OUTPUT
+                  web_application_s3_bucket=$(terraform output -raw web_application_s3_bucket)
+                  web_application_cloudfront_distribution_id=$(terraform output -raw web_application_cloudfront_distribution_id)
+                  echo "WEB_APPLICATION_S3_BUCKET=$web_application_s3_bucket" >> $GITHUB_OUTPUT
+                  echo "WEB_APPLICATION_CLOUDFRONT_DISTRIBUTION_ID=$web_application_cloudfront_distribution_id" >> $GITHUB_OUTPUT
 
             - name: Build web application
               run: pnpm exec nx build @url-shortener/web
@@ -73,9 +73,9 @@ jobs:
               uses: reggionick/s3-deploy@v4
               with:
                   folder: ./apps/web/dist
-                  bucket: ${{ steps.terraform-core-outputs.outputs.S3_BUCKET_NAME }}
+                  bucket: ${{ steps.terraform-core-outputs.outputs.WEB_APPLICATION_S3_BUCKET }}
                   bucket-region: ${{ secrets.AWS_REGION }}
-                  dist-id: ${{ steps.terraform-core-outputs.outputs.CLOUDFRONT_DISTRIBUTION_ID }}
+                  dist-id: ${{ steps.terraform-core-outputs.outputs.WEB_APPLICATION_CLOUDFRONT_DISTRIBUTION_ID }}
                   invalidation: /
                   delete-removed: true
                   private: true

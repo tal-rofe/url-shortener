@@ -3,7 +3,7 @@ output "web_application_s3_bucket" {
   value       = module.web_app_static.s3_bucket_name
 }
 
-output "cloudfront_distribution_id" {
+output "web_application_cloudfront_distribution_id" {
   description = "The distribution identifier of deployed CloudFront serving the web application"
   value       = module.web_app_static.cloudfront_distribution_id
 }
