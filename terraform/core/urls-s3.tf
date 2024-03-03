@@ -16,10 +16,12 @@ module "urls_s3_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
   version = "4.1.0"
 
-  acl           = "private"
-  force_destroy = true
-  attach_policy = true
-  policy        = data.aws_iam_policy_document.s3_policy.json
+  acl                      = "private"
+  force_destroy            = true
+  attach_policy            = true
+  policy                   = data.aws_iam_policy_document.s3_policy.json
+  control_object_ownership = true
+  object_ownership         = "BucketOwnerPreferred"
 
   tags = merge(
     var.common_tags,
