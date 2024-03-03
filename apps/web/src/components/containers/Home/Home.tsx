@@ -53,7 +53,7 @@ const Home = () => {
 			return;
 		}
 
-		urlRelatedRefs.current.output.innerHTML = responseText;
+		urlRelatedRefs.current.output.innerHTML = `https://u.${import.meta.env.VITE_DOMAIN_NAME}/${responseText}`;
 		setIsOutputButtonDisabledState(() => false);
 		toast.success('Successfully shortened URL, click to copy!');
 	};

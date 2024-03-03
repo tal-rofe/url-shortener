@@ -10,7 +10,7 @@ module "api_gateway" {
   cors_configuration = {
     allow_headers = ["Content-Type"]
     allow_methods = ["POST"]
-    allow_origins = ["https://u.${var.domain_name}"]
+    allow_origins = ["https://${var.domain_name}"]
   }
 
   integrations = {
