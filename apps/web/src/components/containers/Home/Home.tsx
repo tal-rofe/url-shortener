@@ -34,7 +34,7 @@ const Home = () => {
 		let shortenUrlResponse: Response;
 
 		try {
-			shortenUrlResponse = await fetch(`api.${import.meta.env.VITE_DOMAIN_NAME}/shortener`, {
+			shortenUrlResponse = await fetch(`https://api.${import.meta.env.VITE_DOMAIN_NAME}/shortener`, {
 				method: 'POST',
 				headers: apiCallHeaders,
 				body: JSON.stringify({ url: urlObject.toString() }),
