@@ -33,7 +33,7 @@ module "urls_cloudfront" {
   }
 
   viewer_certificate = {
-    acm_certificate_arn = module.urls_acm_cloudfront.acm_certificate_arn
+    acm_certificate_arn = module.cloudfronts_acm.acm_certificate_arn
     ssl_support_method  = "sni-only"
   }
 

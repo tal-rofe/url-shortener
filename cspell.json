@@ -9,5 +9,15 @@
 		"./cspell.json",
 		"./czvinyl.config.ts"
 	],
-	"words": ["Rofe", "injective", "toastify", "tfstate", "etag", "filemd", "apigatewayv", "fqdns"]
+	"words": [
+		"Rofe",
+		"injective",
+		"toastify",
+		"tfstate",
+		"etag",
+		"filemd",
+		"apigatewayv",
+		"fqdns",
+		"cloudfronts"
+	]
 }

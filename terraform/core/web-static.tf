@@ -1,8 +1,9 @@
 module "web_app_static" {
   source = "../modules/ssl-static-app"
 
-  domain_name = var.domain_name
-  zone_id     = data.aws_route53_zone.primary.zone_id
+  domain_name         = var.domain_name
+  zone_id             = data.aws_route53_zone.primary.zone_id
+  acm_certificate_arn = module.cloudfronts_acm.acm_certificate_arn
 
   common_tags = var.common_tags
 

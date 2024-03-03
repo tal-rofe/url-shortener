@@ -8,6 +8,11 @@ variable "zone_id" {
   type        = string
 }
 
+variable "acm_certificate_arn" {
+  description = "The certificate ARN for CloudFront"
+  type        = string
+}
+
 variable "common_tags" {
   description = "The tags for all created resources"
   type        = map(string)
