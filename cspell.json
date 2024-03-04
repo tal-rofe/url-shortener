@@ -19,6 +19,7 @@
 		"apigatewayv",
 		"fqdns",
 		"cloudfronts",
-		"tsbuildinfo"
+		"tsbuildinfo",
+		"jsonencode"
 	]
 }
