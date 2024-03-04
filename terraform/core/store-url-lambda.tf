@@ -54,7 +54,6 @@ resource "aws_lambda_function" "store_url_lambda" {
   source_code_hash = data.archive_file.lambda_store_url_zip.output_base64sha256
   s3_bucket        = module.s3_store_url_lambda_bucket.s3_bucket_id
   s3_key           = aws_s3_object.store_url_lambda_s3_object.key
-  depends_on       = [aws_cloudwatch_log_group.store_url_cloudwatch_log_group]
 
   environment {
     variables = {
