@@ -18,6 +18,7 @@
 		"filemd",
 		"apigatewayv",
 		"fqdns",
-		"cloudfronts"
+		"cloudfronts",
+		"tsbuildinfo"
 	]
 }
