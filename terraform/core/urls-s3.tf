@@ -10,6 +10,16 @@ data "aws_iam_policy_document" "s3_policy" {
       identifiers = module.urls_cloudfront.cloudfront_origin_access_identity_iam_arns
     }
   }
+
+  statement {
+    actions   = ["s3:PutObject", "s3:PutObjectAcl"]
+    resources = ["${module.urls_s3_bucket.s3_bucket_arn}/*"]
+
+    principals {
+      type        = "AWS"
+      identifiers = aws_lambda_function.store_url_lambda.aws_iam_role.iam_for_lambda_store_url.arn
+    }
+  }
 }
 
 module "urls_s3_bucket" {

@@ -41,7 +41,7 @@ resource "aws_iam_policy" "store_url_logging_policy" {
   )
 }
 
-resource "aws_iam_role_policy_attachment" "lambda_flow_log_cloudwatch" {
+resource "aws_iam_role_policy_attachment" "store_url_logging_policy_attachment" {
   role       = aws_iam_role.iam_for_lambda_store_url.id
   policy_arn = aws_iam_policy.store_url_logging_policy.arn
 }
