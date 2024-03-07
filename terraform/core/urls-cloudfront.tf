@@ -1,6 +1,6 @@
 module "urls_cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
-  version = "3.3.0"
+  version = "3.3.1"
 
   comment                       = "CloudFront for caching stored URLs in S3 bucket"
   is_ipv6_enabled               = true
