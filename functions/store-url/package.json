@@ -12,7 +12,7 @@
 	},
 	"devDependencies": {
 		"@types/aws-lambda": "8.10.134",
-		"@types/node": "20.11.22"
+		"@types/node": "20.11.24"
 	},
 	"dependencies": {
 		"@aws-sdk/client-s3": "3.523.0",
