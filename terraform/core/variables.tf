@@ -8,6 +8,11 @@ variable "domain_name" {
   type        = string
 }
 
+variable "store_url_lambda_function_name" {
+  description = "Name of the lambda function dedicated for storing URLs"
+  type        = string
+}
+
 variable "common_tags" {
   description = "A map of common tags to add to all resources"
   type        = map(string)
