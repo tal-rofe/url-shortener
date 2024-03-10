@@ -20,10 +20,10 @@
 		"cspell": "cspell lint -c ./cspell.json --gitignore --no-progress --no-summary **"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "18.6.1",
+		"@commitlint/cli": "19.0.3",
 		"@types/node": "20.11.24",
 		"commitizen": "4.3.0",
-		"cspell": "8.4.1",
+		"cspell": "8.5.0",
 		"cz-vinyl": "2.5.1",
 		"husky": "9.0.11",
 		"is-ci": "3.0.1",
