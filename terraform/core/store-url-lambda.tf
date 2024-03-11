@@ -32,22 +32,16 @@ resource "aws_iam_policy" "store_url_logging_policy" {
     "Statement" : [
       {
         "Effect" : "Allow",
-        "Action" : "logs:CreateLogGroup",
-        "Resource" : "arn:aws:logs:region:*:*"
-      },
-
-      {
-        "Effect" : "Allow",
         "Action" : [
+          "logs:CreateLogGroup",
           "logs:CreateLogStream",
           "logs:PutLogEvents"
         ],
         "Resource" : [
-          "arn:aws:logs:region:*:log-group:/aws/lambda/functionname:${var.store_url_lambda_function_name}"
+          "*"
         ]
       }
     ]
-
   })
 
   tags = merge(
