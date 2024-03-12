@@ -5,5 +5,5 @@
 		"noEmit": false,
 		"removeComments": true
 	},
-	"include": ["./src/**/*.ts"]
+	"include": ["./src/**/*.ts", "./package.json"]
 }
