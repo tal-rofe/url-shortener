@@ -37,6 +37,7 @@ jobs:
               run: |
                   mkdir ./functions/store-url/nodejs
                   cp -r ./functions/store-url/node_modules ./functions/store-url/nodejs
+                  cp -r ./functions/store-url/package.json ./functions/store-url/nodejs
                   mv ./functions/store-url/nodejs ./terraform/artifacts/store-url/nodejs
 
             - name: Terraform setup
