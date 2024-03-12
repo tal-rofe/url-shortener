@@ -1,8 +1,6 @@
 {
 	"compilerOptions": {
 		"target": "ES2018",
-		"module": "ESNext",
-		"moduleResolution": "bundler",
 		"noEmit": true,
 		"baseUrl": "./",
 		"allowJs": false,

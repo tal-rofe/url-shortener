@@ -4,8 +4,8 @@ import type { APIGatewayProxyHandler } from 'aws-lambda';
 import type { z } from 'zod';
 import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
 
-import RequestBody from './schemas/request-body';
-import { doesObjectExist } from './utils/s3';
+import RequestBody from './schemas/request-body.js';
+import { doesObjectExist } from './utils/s3.js';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
 	const requestBody = event.body;
