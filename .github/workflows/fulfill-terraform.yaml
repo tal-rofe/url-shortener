@@ -30,9 +30,11 @@ jobs:
                   aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
                   aws-region: ${{ secrets.AWS_REGION }}
 
-            - name: Build store-url lambda function and layer
+            - name: Build store-url lambda function
+              run: pnpm exec nx build @url-shortener/store-url
+
+            - name: Create node moduels directory for lambda layer
               run: |
-                  pnpm exec nx build @url-shortener/store-url
                   mkdir ./functions/store-url/nodejs
                   cp -r ./functions/store-url/node_modules ./functions/store-url/nodejs
                   mv ./functions/store-url/nodejs ./terraform/artifacts/store-url/nodejs
