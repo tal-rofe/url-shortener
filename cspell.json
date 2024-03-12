@@ -21,6 +21,7 @@
 		"cloudfronts",
 		"tsbuildinfo",
 		"jsonencode",
-		"functionname"
+		"functionname",
+		"runtimes"
 	]
 }
