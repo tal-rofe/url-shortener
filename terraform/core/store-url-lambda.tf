@@ -37,7 +37,7 @@ data "archive_file" "lambda_store_url_zip" {
   type        = "zip"
   source_dir  = "${dirname(path.module)}/artifacts/store-url"
   output_path = "${dirname(path.module)}/artifacts/store-url.zip"
-  excludes    = ["tsconfig.build.tsbuildinfo"]
+  excludes    = ["tsconfig.build.tsbuildinfo", "nodejs"]
 }
 
 resource "aws_s3_object" "store_url_lambda_s3_object" {
