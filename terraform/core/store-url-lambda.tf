@@ -35,8 +35,8 @@ resource "aws_iam_role_policy_attachment" "store_url_policy_attachment" {
 
 data "archive_file" "lambda_store_url_zip" {
   type        = "zip"
-  source_dir  = "${dirname(path.module)}/artifacts/store-url"
-  output_path = "${dirname(path.module)}/artifacts/store-url.zip"
+  source_dir  = "../${path.module}/artifacts/store-url"
+  output_path = "../${path.module}/artifacts/store-url.zip"
   excludes    = ["tsconfig.build.tsbuildinfo", "nodejs"]
 }
 

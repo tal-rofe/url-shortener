@@ -1,7 +1,7 @@
 data "archive_file" "lambda_layer_store_url_zip" {
   type        = "zip"
-  source_dir  = "${dirname(path.module)}/artifacts/store-url/nodejs"
-  output_path = "${dirname(path.module)}/artifacts/store-url/nodejs.zip"
+  source_dir  = "../${path.module}/artifacts/store-url/nodejs"
+  output_path = "../${path.module}/artifacts/store-url/nodejs.zip"
 }
 
 resource "aws_s3_object" "store_url_lambda_layer_s3_object" {
