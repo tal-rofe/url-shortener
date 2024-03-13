@@ -37,3 +37,11 @@ module "api_gateway" {
     }
   )
 }
+
+resource "aws_lambda_permission" "api_gw_permissions_invoke_store_url_lambda" {
+  statement_id  = "AllowAPIGatewayInvoke"
+  action        = "lambda:InvokeFunction"
+  function_name = aws_lambda_function.store_url_lambda.function_name
+  principal     = "apigateway.amazonaws.com"
+  source_arn    = "${module.api_gateway.apigatewayv2_api_execution_arn}/*/*"
+}
