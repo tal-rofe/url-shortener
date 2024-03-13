@@ -41,7 +41,7 @@ data "aws_iam_policy_document" "store_url_lambda_put_urls_s3_policy_document" {
     ]
 
     resources = [
-      "arn:aws:s3:::bucket/*"
+      "arn:aws:s3:::bucket/${module.urls_s3_bucket.s3_bucket_arn}"
     ]
   }
 }
