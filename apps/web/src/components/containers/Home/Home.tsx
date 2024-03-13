@@ -1,7 +1,7 @@
 import React, { useRef, useState } from 'react';
 import { toast } from 'react-toastify';
 
-import type { UrlRelatedRefs } from './types';
+import type { ShortenUrlResponseBody, UrlRelatedRefs } from './types';
 
 import HomeView from './Home.view';
 
@@ -45,15 +45,15 @@ const Home = () => {
 			return;
 		}
 
-		const responseText = await shortenUrlResponse.text();
+		const responseBody = (await shortenUrlResponse.json()) as ShortenUrlResponseBody;
 
 		if (!shortenUrlResponse.ok) {
-			toast.error(responseText);
+			toast.error(responseBody.message);
 
 			return;
 		}
 
-		urlRelatedRefs.current.output.innerHTML = `https://u.${import.meta.env.VITE_DOMAIN_NAME}/${responseText}`;
+		urlRelatedRefs.current.output.innerHTML = `https://u.${import.meta.env.VITE_DOMAIN_NAME}/${responseBody.hashedUrl!}`;
 		setIsOutputButtonDisabledState(() => false);
 		toast.success('Successfully shortened URL, click to copy!');
 	};

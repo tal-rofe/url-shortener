@@ -13,7 +13,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 	console.log(`Request body is: ${requestBody}`);
 
 	if (!requestBody) {
-		return { statusCode: 400, body: 'Missing URL to shortener' };
+		return { statusCode: 400, body: JSON.stringify({ message: 'Missing URL to shortener' }) };
 	}
 
 	let validatedRequestBody: z.infer<typeof RequestBody>;
@@ -22,7 +22,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 		const parsedRequestBody = JSON.parse(requestBody);
 		validatedRequestBody = await RequestBody.parseAsync(parsedRequestBody);
 	} catch (error: unknown) {
-		return { statusCode: 400, body: 'Invalid URL data' };
+		return { statusCode: 400, body: JSON.stringify('Invalid URL data') };
 	}
 
 	/**
@@ -40,7 +40,10 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 	if (doesUrlExist) {
 		console.log('URL was already shortened, return hash value');
 
-		return { statusCode: 200, body: JSON.stringify({ hashedUrl }) };
+		return {
+			statusCode: 200,
+			body: JSON.stringify({ hashedUrl, message: 'Successfully shortened URL' }),
+		};
 	}
 
 	const putS3Command = new PutObjectCommand({
@@ -54,10 +57,10 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 	} catch (error: unknown) {
 		console.log(`Failed to store hashed URL in the bucket, with an error: ${error}`);
 
-		return { statusCode: 500, body: 'Server error' };
+		return { statusCode: 500, body: JSON.stringify({ message: 'Server error' }) };
 	}
 
 	console.log('Successfully stored S3 object with hashed URL');
 
-	return { statusCode: 200, body: JSON.stringify({ hashedUrl }) };
+	return { statusCode: 200, body: JSON.stringify({ hashedUrl, message: 'Successfully shortened URL' }) };
 };
