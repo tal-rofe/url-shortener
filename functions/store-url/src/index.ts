@@ -57,7 +57,7 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 		return { statusCode: 500, body: 'Server error' };
 	}
 
-	console.log(`Successfully stored S3 object with hashed URL`);
+	console.log('Successfully stored S3 object with hashed URL');
 
 	return { statusCode: 200, body: JSON.stringify({ hashedUrl }) };
 };
