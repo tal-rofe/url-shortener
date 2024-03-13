@@ -22,6 +22,7 @@
 		"tsbuildinfo",
 		"jsonencode",
 		"functionname",
-		"runtimes"
+		"runtimes",
+		"outfile"
 	]
 }

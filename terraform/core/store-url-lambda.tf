@@ -35,9 +35,8 @@ resource "aws_iam_role_policy_attachment" "store_url_policy_attachment" {
 
 data "archive_file" "lambda_store_url_zip" {
   type        = "zip"
-  source_dir  = "../${path.module}/artifacts/store-url"
-  output_path = "../${path.module}/artifacts/store-url.zip"
-  excludes    = ["tsconfig.build.tsbuildinfo", "nodejs"]
+  source_dir  = "${path.module}/../../functions/store-url/build"
+  output_path = "${path.module}/../store-url.zip"
 }
 
 resource "aws_s3_object" "store_url_lambda_s3_object" {
@@ -63,7 +62,6 @@ resource "aws_lambda_function" "store_url_lambda" {
   source_code_hash = data.archive_file.lambda_store_url_zip.output_base64sha256
   s3_bucket        = module.s3_store_url_lambda_bucket.s3_bucket_id
   s3_key           = aws_s3_object.store_url_lambda_s3_object.key
-  layers           = [aws_lambda_layer_version.store_url_lambda_layer.arn]
   depends_on       = [aws_cloudwatch_log_group.store_url_cloudwatch_log_group]
 
   environment {

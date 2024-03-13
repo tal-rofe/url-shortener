@@ -1,9 +1,7 @@
 {
 	"extends": "./tsconfig.base.json",
 	"compilerOptions": {
-		"outDir": "../../terraform/artifacts/store-url",
-		"noEmit": false,
 		"removeComments": true
 	},
-	"include": ["./src/**/*.ts", "./package.json"]
+	"include": ["./src/**/*.ts"]
 }

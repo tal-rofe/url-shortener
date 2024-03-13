@@ -33,13 +33,6 @@ jobs:
             - name: Build store-url lambda function
               run: pnpm exec nx build @url-shortener/store-url
 
-            - name: Create node moduels directory for lambda layer
-              run: |
-                  mkdir ./functions/store-url/nodejs
-                  cp -r ./functions/store-url/node_modules ./functions/store-url/nodejs
-                  cp -r ./functions/store-url/package.json ./functions/store-url/nodejs
-                  mv ./functions/store-url/nodejs ./terraform/artifacts/store-url/nodejs
-
             - name: Terraform setup
               uses: hashicorp/setup-terraform@v3
               with:
