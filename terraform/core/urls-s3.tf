@@ -1,4 +1,4 @@
-data "aws_iam_policy_document" "s3_policy" {
+data "aws_iam_policy_document" "urls_s3_policy" {
   version = "2012-10-17"
 
   statement {
@@ -10,16 +10,6 @@ data "aws_iam_policy_document" "s3_policy" {
       identifiers = module.urls_cloudfront.cloudfront_origin_access_identity_iam_arns
     }
   }
-
-  statement {
-    actions   = ["s3:PutObject", "s3:PutObjectAcl"]
-    resources = ["${module.urls_s3_bucket.s3_bucket_arn}/*"]
-
-    principals {
-      type        = "AWS"
-      identifiers = [aws_iam_role.iam_for_lambda_store_url.arn]
-    }
-  }
 }
 
 module "urls_s3_bucket" {
@@ -29,7 +19,7 @@ module "urls_s3_bucket" {
   acl                      = "private"
   force_destroy            = true
   attach_policy            = true
-  policy                   = data.aws_iam_policy_document.s3_policy.json
+  policy                   = data.aws_iam_policy_document.urls_s3_policy.json
   control_object_ownership = true
   object_ownership         = "BucketOwnerPreferred"
 

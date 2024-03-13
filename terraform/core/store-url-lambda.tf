@@ -33,6 +33,38 @@ resource "aws_iam_role_policy_attachment" "store_url_policy_attachment" {
   policy_arn = data.aws_iam_policy.store_url_lambda_basic_execution_policy.arn
 }
 
+data "aws_iam_policy_document" "store_url_lambda_put_urls_s3_policy_document" {
+  statement {
+    actions = [
+      "s3:PutObject",
+      "s3:PutObjectAcl"
+    ]
+
+    resources = [
+      "arn:aws:s3:::bucket/${module.urls_s3_bucket.s3_bucket_arn}"
+    ]
+  }
+}
+
+resource "aws_iam_policy" "store_url_lambda_put_urls_s3_policy" {
+  name        = "Store-URL-Lambda-Put-URLs-S3-Policy"
+  description = "Contains S3 put permission for Lambda"
+  policy      = data.aws_iam_policy_document.store_url_lambda_put_urls_s3_policy_document.json
+
+  tags = merge(
+    var.common_tags,
+    {
+      Name  = "${var.project}-Store-URL-Lambda-Function-Put-URLs-S3-Policy"
+      Stack = "Backend"
+    }
+  )
+}
+
+resource "aws_iam_role_policy_attachment" "store_url_put_urls_s3_policy_attachment" {
+  role       = aws_iam_role.iam_for_lambda_store_url.id
+  policy_arn = aws_iam_policy.store_url_lambda_put_urls_s3_policy.arn
+}
+
 data "archive_file" "lambda_store_url_zip" {
   type        = "zip"
   source_dir  = "${path.module}/../../functions/store-url/build"
