@@ -98,7 +98,7 @@ resource "aws_lambda_function" "store_url_lambda" {
 
   environment {
     variables = {
-      S3_BUCKET = module.s3_store_url_lambda_bucket.s3_bucket_id
+      S3_BUCKET = module.urls_s3_bucket.s3_bucket_id
     }
   }
 
