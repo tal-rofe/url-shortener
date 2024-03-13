@@ -6,6 +6,7 @@ module "urls_cloudfront" {
   is_ipv6_enabled               = true
   price_class                   = "PriceClass_100"
   create_origin_access_identity = true
+  aliases                       = ["u.${var.domain_name}"]
 
   origin_access_identities = {
     s3_identity = "S3 dedicated for redirecting clients' URLs"
