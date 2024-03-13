@@ -34,11 +34,11 @@ module "urls_s3_bucket" {
   object_ownership         = "BucketOwnerPreferred"
   website = {
     index_document = {
-      suffix = "index.html"
+      value = "index.html"
     }
 
     error_document = {
-      key = "error.html"
+      value = "error.html"
     }
   }
 
