@@ -32,7 +32,15 @@ module "urls_s3_bucket" {
   policy                   = data.aws_iam_policy_document.urls_s3_policy.json
   control_object_ownership = true
   object_ownership         = "BucketOwnerPreferred"
-  website                  = {}
+  website = {
+    index_document = {
+      suffix = "index.html"
+    }
+
+    error_document = {
+      key = "error.html"
+    }
+  }
 
   tags = merge(
     var.common_tags,
