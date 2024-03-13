@@ -33,7 +33,13 @@ module "urls_s3_bucket" {
   control_object_ownership = true
   object_ownership         = "BucketOwnerPreferred"
   website = {
-    dummy = "dummy"
+    index_document = {
+      suffix = "index.html"
+    }
+
+    error_document = {
+      key = "error.html"
+    }
   }
 
   tags = merge(
