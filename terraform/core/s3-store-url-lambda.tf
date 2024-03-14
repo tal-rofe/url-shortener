@@ -1,6 +1,6 @@
 module "s3_store_url_lambda_bucket" {
   source  = "terraform-aws-modules/s3-bucket/aws"
-  version = "4.1.0"
+  version = "4.1.1"
 
   acl                      = "private"
   force_destroy            = true
