@@ -1,6 +1,6 @@
 module "api_gateway_acm" {
   source  = "terraform-aws-modules/acm/aws"
-  version = "5.0.0"
+  version = "5.0.1"
 
   domain_name               = var.domain_name
   zone_id                   = data.aws_route53_zone.primary.zone_id

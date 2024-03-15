@@ -1,6 +1,6 @@
 module "urls_cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
-  version = "3.3.1"
+  version = "3.3.2"
 
   comment                       = "CloudFront to get original URL of provided hashed URL and to get redirected"
   is_ipv6_enabled               = true
