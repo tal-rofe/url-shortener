@@ -1,8 +1,8 @@
 {
-	"name": "@url-shortener/store-url",
+	"name": "@url-shortener/redirect-url",
 	"version": "1.0.0",
 	"private": true,
-	"description": "Lambda function to store given URL within S3 bucket",
+	"description": "Lambda function to redirect given hashed URL to original URL",
 	"license": "MIT",
 	"author": "Tal Rofe",
 	"type": "module",
@@ -17,7 +17,6 @@
 		"esbuild-plugin-tsc": "0.4.0"
 	},
 	"dependencies": {
-		"@aws-sdk/client-dynamodb": "3.533.0",
-		"zod": "3.22.4"
+		"@aws-sdk/client-dynamodb": "3.533.0"
 	}
 }

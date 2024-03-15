@@ -2,27 +2,13 @@ module "urls_cloudfront" {
   source  = "terraform-aws-modules/cloudfront/aws"
   version = "3.3.1"
 
-  comment                       = "CloudFront for caching stored URLs in S3 bucket"
+  comment                       = "CloudFront to get original URL of provided hashed URL and to get redirected"
   is_ipv6_enabled               = true
   price_class                   = "PriceClass_100"
   create_origin_access_identity = true
   aliases                       = ["u.${var.domain_name}"]
 
-  origin_access_identities = {
-    s3_identity = "S3 dedicated for redirecting clients' URLs"
-  }
-
-  origin = {
-    s3_identity = {
-      domain_name = module.urls_s3_bucket.s3_bucket_bucket_regional_domain_name
-      s3_origin_config = {
-        origin_access_identity = "s3_identity"
-      }
-    }
-  }
-
   default_cache_behavior = {
-    target_origin_id       = "s3_identity"
     viewer_protocol_policy = "redirect-to-https"
     default_ttl            = 5400
     min_ttl                = 3600
@@ -30,7 +16,17 @@ module "urls_cloudfront" {
     allowed_methods        = ["GET", "HEAD"]
     cached_methods         = ["GET", "HEAD"]
     compress               = true
-    query_string           = true
+    query_string           = false
+
+    function_association = {
+      viewer-request = {
+        function_arn = aws_cloudfront_function.redirect_url_lambda_edge.arn
+      }
+
+      viewer-response = {
+        function_arn = aws_cloudfront_function.redirect_url_lambda_edge.arn
+      }
+    }
   }
 
   viewer_certificate = {

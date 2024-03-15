@@ -2,10 +2,10 @@ import crypto from 'node:crypto';
 
 import type { APIGatewayProxyHandler } from 'aws-lambda';
 import type { z } from 'zod';
-import { S3Client, PutObjectCommand } from '@aws-sdk/client-s3';
+import { DynamoDBClient, GetItemCommand, PutItemCommand } from '@aws-sdk/client-dynamodb';
 
 import RequestBody from './schemas/request-body';
-import { doesObjectExist } from './utils/s3';
+import { MAX_ATTEMPTS } from './constants/dynamo-db';
 
 export const handler: APIGatewayProxyHandler = async (event) => {
 	const requestBody = event.body;
@@ -34,10 +34,29 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 
 	console.log(`Generated hashed URL: ${hashedUrl}`);
 
-	const s3Client = new S3Client({ region: process.env.AWS_REGION });
-	const doesUrlExist = await doesObjectExist(s3Client, hashedUrl);
+	const dynamoDbClient = new DynamoDBClient({ region: process.env.AWS_REGION, maxAttempts: MAX_ATTEMPTS });
+	const getItemCommand = new GetItemCommand({
+		TableName: process.env.DYNAMO_DB_TABLE_NAME,
+		Key: {
+			hash: { S: hashedUrl },
+		},
+	});
 
-	if (doesUrlExist) {
+	let itemDoesExist: boolean;
+
+	try {
+		const result = await dynamoDbClient.send(getItemCommand);
+
+		itemDoesExist = result.Item !== undefined;
+	} catch (error: unknown) {
+		console.log(`Failed to get item from DynamoDB with an error: ${error}`);
+
+		itemDoesExist = false;
+	}
+
+	console.log(`Tried to get item from DynamoDB, got existence value: ${itemDoesExist}`);
+
+	if (itemDoesExist) {
 		console.log('URL was already shortened, return hash value');
 
 		return {
@@ -46,21 +65,23 @@ export const handler: APIGatewayProxyHandler = async (event) => {
 		};
 	}
 
-	const putS3Command = new PutObjectCommand({
-		Bucket: process.env.S3_BUCKET,
-		Key: hashedUrl,
-		WebsiteRedirectLocation: validatedRequestBody.url,
+	const putItemCommand = new PutItemCommand({
+		TableName: process.env.DYNAMO_DB_TABLE_NAME,
+		Item: {
+			hash: { S: hashedUrl },
+			url: { S: validatedRequestBody.url },
+		},
 	});
 
 	try {
-		await s3Client.send(putS3Command);
+		await dynamoDbClient.send(putItemCommand);
 	} catch (error: unknown) {
-		console.log(`Failed to store hashed URL in the bucket, with an error: ${error}`);
+		console.log(`Failed to store hashed URL in the table, with an error: ${error}`);
 
 		return { statusCode: 500, body: JSON.stringify({ message: 'Server error' }) };
 	}
 
-	console.log('Successfully stored S3 object with hashed URL');
+	console.log('Successfully stored DynamoDB entry with hashed URL');
 
 	return { statusCode: 200, body: JSON.stringify({ hashedUrl, message: 'Successfully shortened URL' }) };
 };

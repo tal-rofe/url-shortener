@@ -1,7 +1,7 @@
 {
 	"extends": "../../tsconfig.base.json",
 	"compilerOptions": {
-		"target": "ESNext",
+		"target": "ES6",
 		"baseUrl": "./",
 		"typeRoots": ["./node_modules/@types", "./@types"]
 	}

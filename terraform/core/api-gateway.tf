@@ -38,7 +38,7 @@ module "api_gateway" {
   )
 }
 
-resource "aws_lambda_permission" "api_gw_permissions_invoke_store_url_lambda" {
+resource "aws_lambda_permission" "api_gw_permission_invoke_store_url_lambda" {
   statement_id  = "AllowAPIGatewayInvoke"
   action        = "lambda:InvokeFunction"
   function_name = aws_lambda_function.store_url_lambda.function_name
