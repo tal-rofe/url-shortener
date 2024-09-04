@@ -110,8 +110,8 @@ importers:
         version: 3.533.0
     devDependencies:
       '@types/aws-lambda':
-        specifier: 8.10.134
-        version: 8.10.134
+        specifier: 8.10.145
+        version: 8.10.145
       '@types/node':
         specifier: 20.11.24
         version: 20.11.24
@@ -132,8 +132,8 @@ importers:
         version: 3.22.4
     devDependencies:
       '@types/aws-lambda':
-        specifier: 8.10.136
-        version: 8.10.136
+        specifier: 8.10.145
+        version: 8.10.145
       '@types/node':
         specifier: 20.11.25
         version: 20.11.25
@@ -2647,12 +2647,8 @@ packages:
       p-map: 4.0.0
     dev: true
 
-  /@types/aws-lambda@8.10.134:
-    resolution: {integrity: sha512-cfv422ivDMO+EeA3N4YcshbTHBL+5lLXe+Uz+4HXvIcsCuWvqNFpOs28ZprL8NA3qRCzt95ETiNAJDn4IcC/PA==}
-    dev: true
-
-  /@types/aws-lambda@8.10.136:
-    resolution: {integrity: sha512-cmmgqxdVGhxYK9lZMYYXYRJk6twBo53ivtXjIUEFZxfxe4TkZTZBK3RRWrY2HjJcUIix0mdifn15yjOAat5lTA==}
+  /@types/aws-lambda@8.10.145:
+    resolution: {integrity: sha512-dtByW6WiFk5W5Jfgz1VM+YPA21xMXTuSFoLYIDY0L44jDLLflVPtZkYuu3/YxpGcvjzKFBZLU+GyKjR0HOYtyw==}
     dev: true
 
   /@types/babel__core@7.20.5:
