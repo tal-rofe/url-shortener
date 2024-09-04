@@ -11,7 +11,7 @@
 		"type-check": "tsc --project ./tsconfig.json"
 	},
 	"devDependencies": {
-		"@types/aws-lambda": "8.10.134",
+		"@types/aws-lambda": "8.10.145",
 		"@types/node": "20.11.24",
 		"esbuild": "0.20.1",
 		"esbuild-plugin-tsc": "0.4.0"
