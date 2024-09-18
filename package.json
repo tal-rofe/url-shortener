@@ -20,7 +20,7 @@
 		"cspell": "cspell lint -c ./cspell.json --gitignore --no-progress --no-summary **"
 	},
 	"devDependencies": {
-		"@commitlint/cli": "19.0.3",
+		"@commitlint/cli": "19.5.0",
 		"@types/node": "20.11.25",
 		"commitizen": "4.3.0",
 		"cspell": "8.6.0",
