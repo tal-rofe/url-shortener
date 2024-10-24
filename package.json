@@ -21,7 +21,7 @@
 	},
 	"devDependencies": {
 		"@commitlint/cli": "19.0.3",
-		"@types/node": "20.11.25",
+		"@types/node": "20.16.12",
 		"commitizen": "4.3.0",
 		"cspell": "8.6.0",
 		"cz-vinyl": "2.5.1",
@@ -40,6 +40,6 @@
 	"packageManager": "pnpm@8.15.4",
 	"engines": {
 		"pnpm": "8.15.4",
-		"node": "20.11.1"
+		"node": "20.18.0"
 	}
 }
